@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nagaland Solo Travel Guide</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f8ff;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      width: 80%;
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+    }
+    h1, h2 {
+      color: #2e8b57;
+      text-align: center;
+    }
+    .section {
+      margin-top: 20px;
+      padding: 20px;
+      background: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .places-slider {
+      display: flex;
+      overflow-x: auto;
+      gap: 10px;
+      padding: 10px 0;
+    }
+    .places-slider img {
+      width: 300px;
+      height: 200px;
+      border-radius: 8px;
+    }
+    .video-section {
+      text-align: center;
+    }
+    iframe {
+      width: 100%;
+      height: 315px;
+      border-radius: 8px;
+    }
+    .budget-info {
+      font-weight: bold;
+      font-size: 1.2em;
+      margin-top: 10px;
+      color: #333;
+    }
+    .food-item, .stay-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+    .food-item img, .stay-item img {
+      width: 300px;
+      height: 300px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+  </style>
+
+  <script>
+    function calculateBudget() {
+      const days = document.getElementById("days").value;
+      const dailyBudget = 900; // Example daily budget in currency
+      const totalBudget = days * dailyBudget;
+      document.getElementById("budget").innerText = "Estimated Budget: ₹" + totalBudget;
+    }
+
+    function saveTravelDetails(event) {
+      event.preventDefault();
+      const formData = new FormData(document.getElementById("travel-form"));
+      const travelDetails = {
+        name: formData.get("name"),
+        age: formData.get("age"),
+        days: formData.get("days"),
+        travelDate: formData.get("travelDate"),
+      };
+
+      fetch("/save-nagaland-travel", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(travelDetails),
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          alert("Travel details saved successfully!");
+        } else {
+          alert("Error saving travel details.");
+        }
+      })
+      .catch(error => {
+        console.error("Error:", error);
+        alert("Error saving travel details.");
+      });
+    }
+  </script>
+</head>
+<body>
+
+<h1>Nagaland Solo Travel Guide</h1>
+
+<!-- Places to Visit Section -->
+<div class="section places">
+  <h2>Places to Visit in Nagaland</h2>
+  <ul>
+    <li>Kaziranga National Park</li>
+    <li>Kohima War Cemetery</li>
+    <li>Dimapur</li>
+    <li>Mokokchung</li>
+    <li>Naga Heritage Village</li>
+  </ul>
+</div>
+
+<div class="container">
+
+<!-- Traveller Information Section -->
+<div class="section traveller-info">
+  <h2>Traveller Information</h2>
+  <form id="travel-form" onsubmit="saveTravelDetails(event)">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="age">Age:</label>
+    <input type="number" id="age" name="age" required>
+
+    <label for="days">Number of Days:</label>
+    <input type="number" id="days" name="days" required oninput="calculateBudget()">
+
+    <label for="travel-date">Select Travel Date:</label>
+    <input type="date" id="travel-date" name="travelDate" required>
+
+    <button type="submit">Save Travel Details</button>
+  </form>
+  <div id="budget" class="budget-info">Estimated Budget: ₹0</div>
+</div>
+
+</div>
+
+<!-- Stay Options Section -->
+<div class="section stay">
+  <h2>Affordable Places to Stay</h2>
+  <ul>
+    <li><strong>Hotel Dimapur:</strong> A budget-friendly hotel located in the heart of Dimapur.</li>
+    <li><strong>Mokokchung Guest House:</strong> A budget stay offering simple, comfortable rooms.</li>
+  </ul>
+</div>
+
+<!-- Food to Taste Section -->
+  <div class="section food">
+    <h2>Food to Taste in Nagaland</h2>
+    <ul>
+      <li><strong>Smoked Pork:</strong> A local delicacy made with pork and a blend of spices, popular in Nagaland.</li>
+      <li><strong>Fermented Soya Beans:</strong> A traditional Naga dish often served with rice.</li>
+    </ul>
+  </div>
+
+  <!-- Video Section -->
+  <div class="section video-section">
+    <h2>Explore Nagaland</h2>
+    <p>Watch this video to learn more about the beauty of Nagaland!</p>
+    <a href="https://youtu.be/YwE4p_zAf-E" target="_blank">Watch on YouTube</a>
+  </div>
+
+  <!-- Reviews Section -->
+  <div class="section review">
+    <h2>Traveller Reviews</h2>
+    <form>
+      <label for="review">Leave a Review:</label>
+      <textarea id="review" name="review" rows="4" placeholder="Share your experience..."></textarea>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+  
+  <!-- Safety and Emergency Information Section -->
+  <div class="section safety">
+    <h2>Safety and Emergency Information</h2>
+    <p><strong>Emergency Contacts:</strong></p>
+    <ul>
+      <li>Kohima Police Station: +91-3702-222070</li>
+      <li>Emergency Ambulance: 108</li>
+      <li>Tourist Helpline: 1363</li>
+    </ul>
+    <p><strong>Safety Tips for Solo Travelers:</strong></p>
+    <ul>
+      <li>Keep your identification and travel documents secure and carry photocopies.</li>
+      <li>Avoid traveling alone in remote areas, especially after dark.</li>
+      <li>Stay connected with someone through your phone and inform them of your plans.</li>
+      <li>Be aware of the weather and carry necessary clothing for all seasons.</li>
+      <li>Carry a basic first-aid kit and any necessary medication.</li>
+    </ul>
+  </div>
+  
+  </div>
+  
+  </body>
+  </html>

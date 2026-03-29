@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Management</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fd;
+            color: #333;
+            display: flex;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #7f5cf4;
+            color: #fff;
+            height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .main {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .sidebar h1 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 40px;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: #fff;
+            padding: 10px;
+            display: block;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar-logo {
+            width: 170px; /* Adjust as needed */
+            height: auto;
+            text-align: center;
+            margin-bottom: 10px;
+            padding-top: 30px;
+        }
+
+        .sidebar a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header h2 {
+            margin: 0;
+        }
+
+        .header button {
+            background-color: #6a5eff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            width: 300px;
+        }
+
+        .modal-content input, .modal-content select {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .modal-content button {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .table-section {
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+        }
+
+        table th, table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #f4f4f4;
+            color: #444;
+        }
+
+        .btn {
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+
+        .btn-pending {
+            background-color: #f0ad4e;
+            color: white;
+        }
+
+        .btn-complete {
+            background-color: #5cb85c;
+            color: white;
+        }
+
+        .btn-delete {
+            background-color: red;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <img src="file:///C:/Users/aryan/AppData/Local/Microsoft/Windows/INetCache/IE/RBBJRQGT/TO-do_logo[1].svg" alt="TODO Logo" class="sidebar-logo">
+        <h1></h1>
+        <a href="main.html">Homepage</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="task_management.html">Task Management</a>
+        <a href="team_collaboration.html">Team Collaboration</a>
+        <a href="inbox.html">Benefits</a>
+        <a href="features.html">Features</a>
+        <a href="profile.html">Profile</a>
+        <a href="logout.html">Logout</a>
+    </div>
+
+    <div class="main">
+        <div class="header">
+            <h2>Hello User! Welcome back.</h2>
+            <button onclick="openModal()">Create Task</button>
+        </div>
+
+        <div id="task-sections">
+            <div class="table-section" id="todo-section">
+                <h3>To-Do</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Task Name</th>
+                            <th>Description</th>
+                            <th>Priority</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="todo-tasks">
+                        <!-- Tasks will be dynamically added here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="table-section" id="inprogress-section">
+                <h3>Pending</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Task Name</th>
+                            <th>Description</th>
+                            <th>Priority</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="pending-tasks">
+                        <!-- Tasks will be dynamically added here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="table-section" id="complete-section">
+                <h3>Complete</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Task Name</th>
+                            <th>Description</th>
+                            <th>Priority</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="complete-tasks">
+                        <!-- Tasks will be dynamically added here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="task-modal">
+        <div class="modal-content">
+            <h3>Create Task</h3>
+            <input type="text" id="task-name" placeholder="Task Name">
+            <input type="text" id="task-desc" placeholder="Description">
+            <select id="task-priority">
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+            </select>
+            <button onclick="createTask()">Add Task</button>
+            <button onclick="closeModal()">Cancel</button>
+        </div>
+    </div>
+
+    <script>
+        // This function is called when the page is loaded to retrieve tasks from the backend and display them
+        window.onload = async function() {
+            try {
+                const response = await fetch('/tasks');
+                if (response.ok) {
+                    const tasks = await response.json();
+                    tasks.forEach(task => {
+                        const { name, description, priority } = task;
+                        addTask('todo-tasks', name, description, priority);
+                    });
+                }
+            } catch (error) {
+                console.error("Error loading tasks:", error);
+            }
+        };
+
+        // This function is triggered when the user creates a new task
+        async function createTask() {
+            const name = document.getElementById('task-name').value;
+            const description = document.getElementById('task-desc').value;
+            const priority = document.getElementById('task-priority').value;
+
+            if (!name || !priority) {
+                alert('Task name and priority are required.');
+                return;
+            }
+
+            try {
+                const response = await fetch('/tasks', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, description, priority }),
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to create task');
+                }
+
+                const newTask = await response.json();
+
+                // Add task to the frontend immediately
+                addTask('todo-tasks', newTask.name, newTask.description, newTask.priority);
+
+                closeModal();
+            } catch (error) {
+                console.error("Error creating task:", error);
+                alert("Error creating task. Please try again.");
+            }
+        }
+
+        // Function to add a task dynamically to a table section
+        function addTask(sectionId, name, description, priority) {
+            const section = document.getElementById(sectionId);
+            const row = document.createElement('tr');
+
+            row.innerHTML = `
+                <td>${name}</td>
+                <td>${description}</td>
+                <td>${priority}</td>
+                <td>
+                    <button class="btn btn-pending" onclick="copyTask('${name}', '${description}', '${priority}', 'pending-tasks')">Pending</button>
+                    <button class="btn btn-complete" onclick="copyTask('${name}', '${description}', '${priority}', 'complete-tasks')"> Complete</button>
+                    <button class="btn btn-delete" onclick="deleteTask(this)">Delete</button>
+                </td>
+            `;
+
+            section.appendChild(row);
+        }
+
+        // Function to copy tasks between sections (To-Do, Pending, Complete)
+        function copyTask(name, description, priority, targetSectionId) {
+            addTask(targetSectionId, name, description, priority);
+        }
+
+        // Function to delete a task from the table
+        function deleteTask(button) {
+            const row = button.parentElement.parentElement;
+            row.remove();
+        }
+
+        // Modal functions
+        function openModal() {
+            document.getElementById('task-modal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('task-modal').style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>
+

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Goa Solo Travel Guide</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f8ff;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      width: 80%;
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+    }
+    h1, h2 {
+      color: #ff6347;
+      text-align: center;
+    }
+    .section {
+      margin-top: 20px;
+      padding: 20px;
+      background: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .places-slider {
+      display: flex;
+      overflow-x: auto;
+      gap: 10px;
+      padding: 10px 0;
+    }
+    .places-slider img {
+      width: 300px;
+      height: 200px;
+      border-radius: 8px;
+    }
+    .video-section {
+      text-align: center;
+    }
+    iframe {
+      width: 100%;
+      height: 315px;
+      border-radius: 8px;
+    }
+    .budget-info {
+      font-weight: bold;
+      font-size: 1.2em;
+      margin-top: 10px;
+      color: #333;
+    }
+
+    .food-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .food-item img {
+      width: 300px;
+      height: 300px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    .stay-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .stay-item img {
+      width: 300px;
+      height: 300px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    .thumbnail {
+      width: 900px;
+      height: 500px;
+    }
+  </style>
+<script>
+    function calculateBudget() {
+      const days = document.getElementById("days").value;
+      const dailyBudget = 3000; // Example daily budget in currency for Goa
+      const totalBudget = days * dailyBudget;
+      document.getElementById("budget").innerText = "Estimated Budget: ₹" + totalBudget;
+    }
+
+    function saveTravelDetails(event) {
+      event.preventDefault();
+      const formData = new FormData(document.getElementById("travel-form"));
+      const travelDetails = {
+        name: formData.get("name"),
+        age: formData.get("age"),
+        days: formData.get("days"),
+        travelDate: formData.get("travel-date"),
+      };
+
+      fetch("/save-goa-travel", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(travelDetails),
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          alert("Travel details saved successfully!");
+        } else {
+          alert("Error saving travel details.");
+        }
+      })
+      .catch(error => {
+        console.error("Error:", error);
+        alert("Error saving travel details.");
+      });
+    }
+
+    <div class="section review">
+  <h2>Traveller Reviews</h2>
+  <form id="review-form">
+    <label for="review">Leave a Review:</label>
+    <textarea id="review" name="review" rows="4" placeholder="Share your experience..."></textarea>
+    <button type="submit">Submit</button>
+  </form>
+  <div id="reviews-list">
+    <h3>Reviews:</h3>
+    <ul id="review-display"></ul>
+  </div>
+</div>
+  // Handle form submission
+  document.getElementById("review-form").addEventListener("submit", function (event) {
+    event.preventDefault(); // Prevent page reload
+
+    // Get the review input
+    const reviewInput = document.getElementById("review").value;
+
+    // Clear the textarea
+    document.getElementById("review").value = "";
+
+    if (reviewInput.trim() !== "") {
+      // Create a new list item for the review
+      const reviewItem = document.createElement("li");
+      reviewItem.textContent = reviewInput;
+
+      // Append the new review to the reviews list
+      document.getElementById("review-display").appendChild(reviewItem);
+    } else {
+      alert("Please enter a valid review.");
+    }
+  });
+
+  </script>
+</head>
+<body>
+
+<h1>Goa Solo Travel Guide</h1>
+<!-- Places to Visit Section with Slider -->
+<div class="section places">
+    <h2>Places to Visit in Goa</h2>
+    <div class="places-slider">
+      <div>
+        <img src="c:\Users\anjal\OneDrive\Documents\fwd\baga-beach-goa.jpg" alt="Baga Beach">
+        <p><strong>Baga Beach</strong></p>
+      </div>
+      <div>
+        <img src="c:\Users\anjal\OneDrive\Documents\fwd\anjuna beach.jpg" alt="Anjuna Beach">
+        <p><strong>Anjuna Beach</strong></p>
+      </div>
+      <div>
+        <img src="c:\Users\anjal\OneDrive\Documents\fwd\dhudhsagar fall.jpg" alt="Dudhsagar Falls">
+        <p><strong>Dudhsagar Falls</strong></p>
+      </div>
+      <div>
+        <img src="c:\Users\anjal\OneDrive\Documents\fwd\basilica of bom jesus.jpg" alt="Basilica of Bom Jesus">
+        <p><strong>Basilica of Bom Jesus</strong></p>
+      </div>
+      <div>
+        <img src="c:\Users\anjal\OneDrive\Documents\fwd\fort-aguada.jpg" alt="Aguada Fort">
+        <p><strong>Aguada Fort</strong></p>
+      </div>
+    </div>
+  </div>
+<div class="container">
+  
+
+  <!-- Traveller Information Section -->
+  <div class="section traveller-info">
+    <h2>Traveller Information</h2>
+    <form id="travel-form" onsubmit="saveTravelDetails(event)">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required>
+
+        <label for="days">Number of Days:</label>
+        <input type="number" id="days" name="days" required oninput="calculateBudget()">
+
+        <label for="travel-date">Select Travel Date:</label>
+        <input type="date" id="travel-date" name="travel-date" required>
+
+        <button type="submit">Save Travel Details</button>
+      </form>
+      <div id="budget" class="budget-info">Estimated Budget: ₹0</div>
+    </div>
+
+    <!-- Stay Options Section -->
+    <div class="stay-item">
+      <h2>Affordable Places to Stay</h2>
+      <div>
+        <img src="c:\Users\anjal\OneDrive\Documents\fwd\inn.jpg" alt="Budget Hotel">
+        <p><strong>Beachside Inn:</strong> Budget hotel near the beach with essential amenities.</p>
+      </div>
+      <div>
+        <img src="c:\Users\anjal\OneDrive\Documents\fwd\Zostel_-Calangute_GOA-5755_1000x800.jpg" alt="Backpacker Hostel">
+        <p><strong>Goa Backpacker Hostel:</strong> Affordable hostel with a vibrant atmosphere for solo travelers.</p>
+      </div>
+    </div>
+
+    <!-- Food to Taste Section -->
+    <div class="food-item">
+      <h2>Food to Taste in Goa</h2>
+      <div>
+        <img src="c:\Users\anjal\OneDrive\Documents\fwd\fish curry.jpg" alt="Goan Fish Curry">
+        <p><strong>Goan Fish Curry:</strong> A popular traditional Goan dish made with local spices and coconut milk.</p>
+    </div>
+    <div>
+      <img class="thumbnail" src="c:\Users\anjal\OneDrive\Documents\fwd\prawn-balchao.jpg" alt="Prawn Balchão">
+      <p><strong>Prawn Balchão:</strong> A spicy and tangy prawn dish unique to Goan cuisine.</p>
+    </div>
+  </div>
+
+  <!-- Video Section -->
+  <div class="section video-section">
+    <h2>Explore Goa</h2>
+    <p>Watch this video to experience the beauty of Goa!</p>
+    <a href="https://youtu.be/jYLXQWVpDYk">
+        <img class="thumbnail" src="https://cdn1.tripoto.com/media/filter/tst/img/1429685/Image/1581689878_5_9.jpg">
+    </a>
+  </div>
+
+  <div class="section review">
+    <h2>Traveller Reviews</h2>
+    <form id="review-form">
+      <label for="review">Leave a Review:</label>
+      <textarea id="review" name="review" rows="4" placeholder="Share your experience..."></textarea>
+      <button type="submit">Submit</button>
+    </form>
+    <div id="reviews-list">
+      <h3>Reviews:</h3>
+      <ul id="review-display"></ul>
+    </div>
+  </div>
+
+  <!-- Safety and Emergency Information Section -->
+  <div class="section safety">
+    <h2>Safety and Emergency Information</h2>
+    <p><strong>Emergency Contacts:</strong></p>
+    <ul>
+      <li>Goa Police Station: +91-832-2424001</li>
+      <li>Emergency Ambulance: 108</li>
+      <li>Tourist Helpline: 1363</li>
+    </ul>
+    <p><strong>Safety Tips for Solo Travelers:</strong></p>
+    <ul>
+      <li>Always carry identification and keep your documents secure.</li>
+      <li>Avoid isolated areas alone, especially after sunset.</li>
+      <li>Stay hydrated and carry sunscreen for beach outings.</li>
+      <li>Keep someone informed about your travel plans and check-in regularly.</li>
+      <li>Be aware of local customs and respect the Goan culture.</li>
+    </ul>
+</div>
+
+</div>
+
+</body>
+</html>

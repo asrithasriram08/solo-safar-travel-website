@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Solo Traveler</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://getwallpapers.com/wallpaper/full/3/5/8/151110.jpg'); /* Background image for a travel vibe */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+    
+        .signin-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+    
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+    
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+    
+        label {
+            font-weight: bold;
+            font-size: 0.9rem;
+            color: #333;
+            display: block;
+            margin-bottom: 5px;
+        }
+    
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+    
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus {
+            outline: none;
+            border: 2px solid #4c51bf;
+            box-shadow: 0 0 5px rgba(92, 100, 242, 0.5);
+        }
+    
+        input[type="submit"] {
+            background-color: #5a67d8;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+    
+        input[type="submit"]:hover {
+            background-color: #4c51bf;
+        }
+    
+        .signup-link {
+            margin-top: 10px;
+            display: block;
+            color: #5a67d8;
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="signin-container">
+        <h2>Sign Up to Solo Traveler</h2>
+        <form action="/signup" method="POST">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+<div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+            </div>
+
+            <input type="submit" value="Sign Up">
+        </form>
+        <a href="signintravel.html" class="signup-link">Back to Sign in here</a>
+    </div>
+</body>
+</html>

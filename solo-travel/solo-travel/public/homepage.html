@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bolo Toh Solo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f6f7;
+        }
+
+        header {
+            background-image: url('c:/Users/anjal/OneDrive/Documents/first.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            text-align: center;
+            padding: 100px 20px;
+            font-family: "Inknut Antiqua", serif;
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            color: black;
+        }
+
+        header p {
+            font-size: 1.5em;
+            color: black;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+        }
+
+        nav a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #555;
+        }
+
+        .container {
+            margin: 20px auto;
+            width: 90%;
+            max-width: 1200px;
+        }
+
+        .frame {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            display: block;
+        }
+
+        .overlay-text {
+            color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 1em;
+            font-family: "Arial", sans-serif;
+            line-height: 1.6;
+        }
+
+        .image-container {
+            display: flex;
+            align-items: stretch;
+            margin-bottom: 30px;
+            gap: 20px;
+        }
+
+        .image-container a {
+            display: flex;
+            width: 100%;
+            gap: 20px;
+            text-decoration: none;
+        }
+
+        .image-container img {
+            width: 50%;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+
+
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+            font-family: "Inknut Antiqua", serif;
+        }
+
+        .footer a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer p {
+            margin: 5px 0;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 50px 20px;
+            }
+
+            header h1 {
+                font-size: 2.5em;
+            }
+
+            header p {
+                font-size: 1.2em;
+            }
+
+            .slides img {
+                height: 50vh;
+            }
+
+            .overlay-text {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="signintravel.html">Sign-Out</a>
+    </nav>
+
+    <header>
+        <h1>SoloSafar</h1>
+        <p>“Discover, plan, and travel solo — effortlessly.”</p>
+    </header>
+
+    <div class="container">
+        <div class="image-container">
+            <a href="sikkim.html">
+                <img src="https://i.ytimg.com/vi/xEG2yGLJH_4/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBdnop0hKbZQcSpFRLcooW6hX2vNg" alt="Sikkim" class="frame">
+                <div class="overlay-text">Sikkim, a small state in northeastern India, is celebrated for its breathtaking landscapes, snow-capped mountains, and rich cultural heritage. Home to the majestic Kanchenjunga, the third-highest peak in the world, Sikkim is a haven for nature enthusiasts and adventure seekers. Visitors are drawn to attractions like the vibrant Yumthang Valley, serene Tsomgo Lake, and centuries-old monasteries, including Rumtek and Pemayangtse. Known for its eco-friendly practices, unique cuisine, and warm hospitality, Sikkim offers a peaceful escape in the lap of the Himalayas, making it an ideal destination for both relaxation and exploration.</div>
+            </a>
+        </div>
+
+        <div class="image-container">
+            <a href="kutch.html">
+                <img src="https://m.media-amazon.com/images/S/pv-target-images/b7706b453c0a1b1ae61659f5b9482d49112cfcc4d888c22ac5ee83658290d2fc.jpg" alt="Kutch" class="frame">
+                <div class="overlay-text">Kutch is a unique region in the state of Gujarat, not Rajasthan, known for its expansive salt marshes, vibrant culture, and stunning landscapes. The area is most famous for the Great Rann of Kutch, a vast salt desert that turns into a dazzling white landscape under the full moon. The annual Rann Utsav festival showcases the cultural heritage of the region, with folk dances, traditional music, handicrafts, and local cuisine. Visitors can also explore historic forts, wildlife sanctuaries, and charming villages, making Kutch a blend of natural beauty, heritage, and tradition.</div>
+            </a>
+        </div>
+
+        <div class="image-container">
+            <a href="manali.html">
+                <img src="https://s3.ap-south-1.amazonaws.com/townscript-production/images/ST1673001806944STENDa4fbf183-548d-4521-b20f-a13be91639ec.jpg" alt="Manali" class="frame">
+                <div class="overlay-text">Manali is a popular hill station nestled in the northern state of Himachal Pradesh, India. Known for its stunning snow-capped mountains, lush green valleys, and adventure activities, Manali is a year-round destination that attracts nature lovers, honeymooners, and thrill-seekers. Key attractions include the Solang Valley, famous for skiing and paragliding, and the historic Hidimba Devi Temple. With its scenic beauty, vibrant local culture, and proximity to the scenic Rohtang Pass, Manali offers a mix of relaxation and adventure, making it a favored getaway in the Himalayas.</div>
+            </a>
+        </div>
+
+        <div class="image-container">
+            <a href="kerala.html">
+                <img src="https://i.ytimg.com/vi/yLE5bDX7M3Y/maxresdefault.jpg" alt="Kerala" class="frame">
+                <div class="overlay-text">Kerala, often referred to as "God's Own Country," is a breathtaking state located in the southwestern part of India. Known for its serene backwaters, lush tea plantations, and palm-lined beaches, Kerala is a paradise for nature enthusiasts and culture seekers alike. The tranquil houseboat cruises on the Alleppey backwaters, the misty hills of Munnar, and the vibrant traditions showcased in Kathakali performances are just a few highlights. With its Ayurvedic wellness retreats, spice plantations, and wildlife sanctuaries, Kerala offers a harmonious blend of relaxation, cultural richness, and natural beauty, making it a must-visit destination.</div>
+            </a>
+        </div>
+
+        <div class="image-container">
+            <a href="udaipur.html">
+                <img src="https://i0.wp.com/onedayitinerary.com/wp-content/uploads/2017/04/One-day-in-Udaipur-Itinerary-2.jpg?resize=723%2C542" alt="Udaipur" class="frame">
+                <div class="overlay-text">Udaipur, often dubbed the "City of Lakes," is a regal city located in the western Indian state of Rajasthan. Famous for its stunning palaces, shimmering lakes, and rich history, Udaipur is a romantic getaway steeped in royal charm. The iconic City Palace overlooking Lake Pichola, the serene Jag Mandir, and the magnificent Lake Palace are key attractions. Udaipur's narrow streets, vibrant bazaars, and cultural performances add to its allure. Surrounded by the Aravalli Hills, the city offers a blend of architectural splendor and natural beauty, making it a favorite destination for travelers seeking a royal experience.</div>
+            </a>
+        </div>
+
+        <div class="image-container">
+            <a href="nagaland.html">
+                <img src="https://enfozone.com/wp-content/uploads/2020/10/a-land-with-spellbinding-culture-and-its-preserver-nagaland.jpg" alt="Nagaland" class="frame">
+                <div class="overlay-text">Nagaland, situated in the northeastern region of India, is a land of vibrant traditions, rolling hills, and untouched natural beauty. Known for its rich tribal culture, colorful festivals, and warm hospitality, Nagaland offers a unique experience for culture enthusiasts and nature lovers. The Hornbill Festival, celebrated with music, dance, and traditional crafts, showcases the state's diverse heritage. The scenic landscapes of Dzukou Valley, famed for its seasonal blooms, and the historical Kohima War Cemetery are notable highlights. With its pristine environment, adventurous trekking trails, and unique tribal heritage, Nagaland is a hidden gem waiting to be explored.</div>
+            </a>
+        </div>
+
+        <div class="image-container">
+            <a href="leh.html">
+                <img src="https://nishnaiholidays.com/wp-content/uploads/2023/04/Trip-To-Leh-Ladakhu.jpg" alt="Leh Ladakh" class="frame">
+                <div class="overlay-text">Leh-Ladakh, located in the northernmost region of India, is a mesmerizing land of rugged landscapes, snow-capped peaks, and pristine lakes. Known for its barren beauty, Leh-Ladakh offers an unparalleled adventure for trekkers, nature lovers, and those seeking tranquility in the Himalayas. The region is famous for its Buddhist monasteries, such as Hemis and Thiksey, which showcase the rich spiritual heritage of the area. Pangong Lake, with its crystal-clear waters, and the Nubra Valley, with its unique sand dunes, are some of the top attractions. The challenging roads and serene beauty of Leh-Ladakh make it a dream destination for road trip enthusiasts and adventure seekers. With its untouched landscapes and rich culture, Leh-Ladakh is a must-visit for anyone looking to explore the hidden wonders of India’s northern frontier.</div>
+            </a>
+        </div>
+    </div>
+
+    <div class="footer">
+        <a href="feedback.html">Feedback</a>
+        <p>Contact Us</p>
+        <p>Email: bolotohsolo@gmail.com</p>
+    </div>
+
+</body>
+</html>
